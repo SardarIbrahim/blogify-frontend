@@ -54,7 +54,7 @@ const LoginPage = () => {
   }
 
   return (
-    <section>
+    <section className={styles.section}>
       <div className={styles.form__container}>
         <h1>Login</h1>
         {/* Signup Form */}

@@ -1,8 +1,17 @@
 .section {
-  background-color: #ffffff;
   opacity: 0.8;
-  background-image: radial-gradient(#f7b645 0.5px, #ffffff 0.5px);
-  background-size: 10px 10px;
+  min-height: 100dvh;
+  background: #ffefba; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffffff,
+    #ffefba
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #ffefba
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* form container */
@@ -67,12 +76,14 @@
   padding: 0.5rem;
   border-left: 1px solid gainsboro;
   border-bottom: 1px solid gainsboro;
+  background-color: transparent;
   width: 100%;
 }
 
 .form div .form__error {
   color: red;
   font-size: 1.1rem;
+  font-weight: bold;
   padding-top: 1rem;
 }
 
