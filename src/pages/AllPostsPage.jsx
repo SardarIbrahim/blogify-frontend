@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink, Navigate, useNavigate } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setPostsFeed } from '../features/posts/postSlice'
@@ -69,6 +69,10 @@ const AllPostsPage = () => {
 
   if (!posts) {
     return <h1>No blogs found 😒</h1>
+  }
+
+  if (!user) {
+    return <Navigate to={'/login'} />
   }
 
   return (
@@ -148,6 +152,12 @@ const AllPostsPage = () => {
 }
 
 export const fetchFeedLoader = async () => {
+  const user = store.getState().user.user
+
+  if (!user) {
+    return null
+  }
+
   // fetch blog feed
 
   try {
