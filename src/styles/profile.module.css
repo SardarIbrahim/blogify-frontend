@@ -45,22 +45,24 @@
   gap: 1.2rem;
   border: none;
   /* border-left: 1px solid #1e1e1e; */
+  align-items: flex-start;
   width: 100%;
   padding: 1rem;
   border-radius: 8px;
 }
 
 .form div label {
+  padding: 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
   color: #1e1e1e;
 }
 
 .form div input {
-  padding: 1rem 0rem;
+  padding: 0.5rem;
   outline: none;
   border: none;
-  padding: 0.5rem;
+
   border-bottom: 1px solid gainsboro;
   width: 100%;
 }
