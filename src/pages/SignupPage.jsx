@@ -12,6 +12,7 @@ import { toast } from 'react-toastify'
 import { BsArrowRight } from 'react-icons/bs'
 
 import styles from '../styles/signup.module.css'
+import { useState } from 'react'
 
 const initialValues = {
   name: '',
@@ -22,6 +23,9 @@ const initialValues = {
 
 const SignupPage = () => {
   const { user } = useSelector((state) => state.user)
+
+  const [sign, setSign] = useState(false)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -31,6 +35,7 @@ const SignupPage = () => {
       initialValues,
       validationSchema: signupSchema,
       onSubmit: async (values, action) => {
+        setSign((prevState) => !prevState)
         /**
          * Submit Form
          */
@@ -139,8 +144,9 @@ const SignupPage = () => {
           <button
             type='submit'
             style={{ fontSize: '1.5rem', padding: '1.5rem' }}
+            disabled={sign ? true : false}
           >
-            Register{' '}
+            {sign ? 'Wait...' : 'Register'}
             <span style={{ verticalAlign: 'middle' }}>
               <BsArrowRight />
             </span>{' '}

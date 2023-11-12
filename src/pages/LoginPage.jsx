@@ -11,6 +11,7 @@ import { BsArrowRight } from 'react-icons/bs'
 import styles from '../styles/login.module.css'
 import { setUser } from '../features/users/userSlice'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 const initialValues = {
   email: '',
@@ -19,6 +20,8 @@ const initialValues = {
 
 const LoginPage = () => {
   const { user } = useSelector((state) => state.user)
+
+  const [log, setLog] = useState(false)
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
@@ -30,6 +33,8 @@ const LoginPage = () => {
       validationSchema: loginSchema,
       onSubmit: async (values, action) => {
         const { email, password } = values
+
+        setLog((prevState) => !prevState)
 
         try {
           const { data } = await axios.post('/api/v1/users/login', {
@@ -97,8 +102,9 @@ const LoginPage = () => {
           <button
             type='submit'
             style={{ fontSize: '1.5rem', padding: '1.5rem' }}
+            disabled={log ? true : false}
           >
-            Login{' '}
+            {log ? 'Wait... ' : 'Login '}
             <span style={{ verticalAlign: 'middle' }}>
               <BsArrowRight />
             </span>{' '}

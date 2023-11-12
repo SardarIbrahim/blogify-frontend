@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 import { NavLink, Outlet } from 'react-router-dom'
 
@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux'
 import { removeUser } from '../features/users/userSlice'
 
 const RootLayout = () => {
+  const [log, setLog] = useState(false)
   // user
   const dispatch = useDispatch()
 
@@ -29,6 +30,7 @@ const RootLayout = () => {
   // logout user
   const logoutUser = async () => {
     try {
+      setLog((prevState) => !prevState)
       const { data } = await axios.post(
         '/api/v1/users/logout',
         {},
@@ -93,8 +95,9 @@ const RootLayout = () => {
             ref={btnRef}
             type='button'
             onClick={logoutUser}
+            disabled={log ? true : false}
           >
-            Logout <GrLogout />
+            {log ? 'wait...' : 'Logout'} <GrLogout />
           </button>
         </div>
 
